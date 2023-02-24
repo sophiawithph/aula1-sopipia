@@ -8,6 +8,27 @@
 
     $template = $twig->load('produtos.html');
 
+    $produtos = [
+        [
+            'nome' => 'Chinelo',
+            'preco' => 30,
+        ],
+        [
+            'nome' => 'Camiseta',
+            'preco' => 50,
+        ],
+        [
+            'nome' => 'Boné',
+            'preco' => 39.9,
+        ],
+        [
+            'nome' => 'Automóvel simples',
+            'preco' => 350000,
+        ],
+    ];
+
     echo $template->render([
-        'titulo' => 'Produtos'
+        'titulo' => 'Produtos',
+        // 'produtos' => $produtos,
+        'produtos' => null,
     ]);
