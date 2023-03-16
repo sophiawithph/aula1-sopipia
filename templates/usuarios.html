@@ -1,0 +1,33 @@
+{# templates/usuarios.html #}
+{% include "inc/head.html" %}
+
+    <h1>Usuários</h1>
+    <p>Listagem de usuários</p>
+
+        <table border="1">
+        <tr>
+            <th>Usuário</th>
+            <th>Admin</th>
+            <th>Ativo</th>
+        </tr>
+
+        {% for usr in usuarios %}
+        <!-- Linha para repetir -->
+        <tr>
+            <td>{{ usr.username }}</td>
+            <td>{{ usr.admin }}</td>
+            <td>{{ usr.ativo }}</td>
+            <td><a href="usuario_apagar.php?id={{usr.id}}">Apagar</a></td>
+        </tr>
+        <!-- / Linha para repetir -->
+        {% else %}
+        <tr>
+            <td colspan="2">Nenhum usuário</td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+    <a href="novo_usuario.php">Adicionar usuário</a>
+
+{% include "inc/foot.html" %}
