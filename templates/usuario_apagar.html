@@ -1,0 +1,14 @@
+{% include "inc/head.html"%}
+<h1>Apagar usuário</h1>
+<p>tem certeza?
+    os dados não poderam ser recuperados
+</p>
+<p> <strong> Você está prestes a apagar o coitado do{{ usuario.username }}</strong></p>
+
+<form action="#" method="post">
+    <input type="hidden" name="id" value="{{ usuario.id }}">
+    <input type="submit" value="apagar o DITO CUJO"> 
+</form>
+
+<div><a href="usuario.php">cancelar</a></div>
+{% include "inc/foot.html"%}
