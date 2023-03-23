@@ -14,13 +14,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     $sql->execute([$username]);
 
     if ($sql->rowCount()){
+        $usuario = $sql-> fetch(PDO::FETCH_ASSOC);
         $token = bin2hex (random_bytes(16));
 
-      $sql = pdo->prepare('UPDATE usuarios SET recupera_token = :token WHERE  id = id_usr');
+      $sql = $pdo->prepare('UPDATE usuarios SET recupera_token = :token WHERE  id = :id_usr');
     
       $sql -> execute([
-        ':token', $token,
-        ':id_usr', $usuario['id'],
+        ':token'=> $token,
+        ':id_usr'=> $usuario['id'],
       ]);
 $msg = 'vai ver seu email';
 

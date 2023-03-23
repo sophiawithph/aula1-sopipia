@@ -1,2 +1,2 @@
 <?php
-$mail->Password ='safgjononlkmyhop';
+// $mail->Password ='safgjononlkmyhop';
