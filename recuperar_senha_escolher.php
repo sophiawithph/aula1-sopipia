@@ -10,24 +10,30 @@ if (!$token){
 }
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $password = $_POST['senha'] ?? false;
+    $password_confi = $_POST['senha_confirma'] ?? false;
+
     $password = trim($password);
+    $password_confi = trim($password_confi);
 
-    $sql = $pdo->prepare('UPDATE usuarios SET senha = :senha, recupera_token = NULL WHERE recupera_token = :token');
-    $sql-> execute([
-        ':senha' => password_hash($password, PASSWORD_BCRYPT),
-        ':token' => $token,
-    ]);
+    if ($password == $password_confi){
+        $sql = $pdo->prepare('UPDATE usuarios SET senha = :senha, recupera_token = NULL WHERE recupera_token = :token');
+        $sql-> execute ([
+            ':senha' => password_hash($password, PASSWORD_BCRYPT),
+            ':tonken'=> $token
+        ]);
+        header('location:login.php?erro=3');
+        die;
+    }
+   
 
-    header('location:login.php?erro=3');
 
-    die;
+ $msg ='Conseguiu errar a senha, neh?';
 }
-
 $sql = $pdo->prepare('SELECT * FROM usuarios WHERE recupera_token =? ');
 $sql -> execute([$token]);
 
 if ($sql->rowCount()== 1){
-    echo $twig->render('recupera_senha_escolher.html', ['token' => $token]);
+    echo $twig->render('recupera_senha_escolher.html', ['token' => $token , 'msg'=> $msg ?? false]);
 }else{
     header('location:login.php');
     die;
