@@ -9,9 +9,10 @@
 
     $usr = new Usuario();
     $info = $usr-> getById($id);
-    var_dump($info);
-    die;
+    
+    $usr =  new Usuario();
+    $info = $usr->getById($id);
  
 
     echo $twig->render('usuarios.html', [
-        'usuarios' => $usuarios, ]);
+        'usuarios' => $info, ]);
