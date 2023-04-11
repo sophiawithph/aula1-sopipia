@@ -1,6 +1,19 @@
-{% extend "inc/base.html" %}
+{% extends "inc/base.html" %}
 {% block conteudo %}
 <p>
     username: {{ usuario.username }}
 </p>
+<form action="usuario_atualizar.php" method="post">
+    <input type="hidden" name="id" value="{{usuario.id}}">
+    <div>
+        <input type="text" name="nome" placeholder="nome" value="{{usuario.nome}}">
+    </div>
+    <div>
+        <input type="text" name="email" placeholder="email" value="{{usuario.email}}">
+    </div>
+    <div>
+        <input type="text" name="username" placeholder="username" value="{{usuario.username}}">
+    </div>
+      <input type="submit" value="atualizar">
+</form>
 {% endblock %}
