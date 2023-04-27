@@ -3,7 +3,7 @@
 <p>
     username: {{ usuario.username }}
 </p>
-<form action="usuario_atualizar.php" method="post">
+<form action="/usuario_atualizar" method="post">
     <input type="hidden" name="id" value="{{usuario.id}}">
     <div>
         <input type="text" name="nome" placeholder="nome" value="{{usuario.nome}}">
