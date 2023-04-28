@@ -2,35 +2,57 @@
 {% extends "inc/base.html" %}
 {% block titulo %}Usuários{% endblock %}
 {% block conteudo %}
+<style>
+    th{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    tr{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    thead{
+        font-family: Arial, Helvetica, sans-serif;
+    }tbody{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
     <h1>Usuários</h1>
     <p>Listagem de usuários</p>
 
-        <table border="1">
+        <table border="1" class="w-full border-collapse border border-gray-200 bg-white text-left text-sm text-gray-500">
+            <thead class="bg-gray-50">
         <tr>
-            <th>Usuário</th>
-            <th>Admin</th>
-            <th>Ativo</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Usuário</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Admin</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Ativo</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">apagar</th>
         </tr>
-
+    </thead>
         {% for usr in usuarios %}
         <!-- Linha para repetir -->
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
         <tr>
-            <td><a href="/usuario_ver/{{usr.id}}">{{usr.username}}</a></td>
+            <td class="px-6 py-4"><a href="/usuario_ver/{{usr.id}}">{{usr.username}}</a></td>
 
-            <td>{{ usr.admin }}</td>
-            <td>{{ usr.ativo }}</td>
-            <td><a href="/usuario_apagar/{{usr.id}}">Apagar</a></td>
+            <td class="px-6 py-4">{{ usr.admin ?'  <span class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-600"> admin </span>' : ' <span class="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-600"> não admin </span>'}}</td>
+            <td class="px-6 py-4">{{ usr.ativo ?'  <span class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-600"> ativo </span>' : ' <span class="rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-600"> ativo </span>'}}</td>
+            <td class="px-6 py-4"><a href="/usuario_apagar/{{usr.id}}"><button type="button" class="inline-flex items-center gap-1.5 rounded-lg border border-red-500 bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="h-4 w-4">
+                    <path fill="currentColor" d="M13.5 6.5V7h5v-.5a2.5 2.5 0 0 0-5 0Zm-2 .5v-.5a4.5 4.5 0 1 1 9 0V7H28a1 1 0 1 1 0 2h-1.508L24.6 25.568A5 5 0 0 1 19.63 30h-7.26a5 5 0 0 1-4.97-4.432L5.508 9H4a1 1 0 0 1 0-2h7.5Zm2.5 6.5a1 1 0 1 0-2 0v10a1 1 0 1 0 2 0v-10Zm5-1a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0v-10a1 1 0 0 0-1-1Z" />
+                </svg>
+               </button></a></td>
         </tr>
         <!-- / Linha para repetir -->
         {% else %}
         <tr>
             <td colspan="2">Nenhum usuário</td>
         </tr>
+    </tbody>
         {% endfor %}
         
     </table>
 
-    <a href="novo_usuario.php">Adicionar usuário</a>
-   
+    <a href="novo_usuario.php">
+   adicionar user
+    </a>
     {% endblock %}
 
