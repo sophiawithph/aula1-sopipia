@@ -1,22 +1,25 @@
-{# templates/produtos.html #}
-{% include "inc/head.html" %}
 
+{% extends "inc/base.html" %}
+{% block conteudo %}
     <h1>Produtos</h1>
     <p>Listagem de produtos</p>
 
-    <p>Última atualização: {{ "now"|date('d/m/Y H:i:s', 'America/Sao_Paulo') }}</p>
+   
 
-    <table border="1">
+    <table border="1" class="w-full border-collapse border border-gray-200 bg-white text-left text-sm text-gray-500">
+        <thead class="bg-gray-50">
         <tr>
-            <th>Produto</th>
-            <th>Preço</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Produto</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Preço</th>
         </tr>
+    </thead>
 
         {% for prod in produtos %}
         <!-- Linha para repetir -->
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
         <tr>
-            <td>{{ prod.nome }}</td>
-            <td>R$ {{ prod.preco|number_format(2, ',', '.') }}</td>
+            <td class="px-6 py-4">{{ prod.nome }}</td>
+            <td class="px-6 py-4">R$ {{ prod.preco|number_format(2, ',', '.') }}</td>
         </tr>
         <!-- / Linha para repetir -->
         {% else %}
@@ -24,7 +27,9 @@
             <td colspan="2">Nenhum produto</td>
         </tr>
         {% endfor %}
-        
+        </tbody>
     </table>
 
-{% include "inc/foot.html" %}
+
+    {% endblock %}
+
